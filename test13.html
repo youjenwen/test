@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>e.target & nodeName</title>
+</head>
+<style>
+    .box {
+        border: 1px solid #000;
+        padding-top: 50px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><a href="#" class="link">這是一個連結</a></li>
+        </ul>
+    </div>
+    <script>
+        var link = document.querySelector('.box');
+        link.addEventListener('click', function (e) {
+            console.log(e);
+            console.log(e.target.nodeName);
+
+        }, false)
+
+        var count = 0;
+
+        function counter() {
+            return ++count;
+        }
+
+        console.log(counter());   // 1
+        console.log(counter());   // 2
+        console.log(counter());   // 3
+
+        function counter() {
+            var count = 0;
+
+            function innerCounter() {
+                return ++count;
+                // console.log(count)
+            }
+            return innerCounter;
+            // console.log(2)
+        }
+
+        var countFunc = counter();
+
+        console.log(countFunc());   // 1
+        console.log(countFunc());   // 2
+        console.log(countFunc());   // 3
+
+
+    </script>
+
+</body>
+
+</html>
